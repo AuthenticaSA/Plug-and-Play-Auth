@@ -1,13 +1,13 @@
-# Authentica API — Developer Journey & Examples (Docs‑first)
+# Authentica API — Developer Journey & Examples
 
-A single page you can **read on GitHub** and immediately understand how to integrate **Authentica**:
+A single page you can **read** and immediately understand how to integrate **Authentica**:
 
 * **OTP** via **SMS / WhatsApp / Email**
 * **Nafath** (Saudi digital identity) — *enablement required*
 * **Biometrics**: **Face** & **Voice** verification
 * **Custom SMS** and **Balance** checks
 
-> This README includes **minimal, commented Node.js & Python snippets**. Full, runnable scripts live in `/examples/` (also readable inline on GitHub). Cloning is **optional**.
+> This README includes **minimal, commented Node.js & Python snippets**. Full, runnable scripts live in `/examples/`.
 
 ---
 
@@ -17,6 +17,22 @@ A single page you can **read on GitHub** and immediately understand how to integ
 2. Pick a flow (OTP, Nafath, Face, Voice, SMS, Balance).
 3. Copy a **Node** or **Python** snippet as your starting point.
 4. If you want a runnable script, click the file under **Examples Index**.
+
+### ⚡ Quick Navigation
+
+* [Examples Index](#examples-index-click-to-read-code-inline-on-github)
+* [Before you start](#before-you-start)
+* [OTP — Send & Verify](#otp-send--verify)
+* [Nafath — Initiate & Webhook](#nafath-initiate--webhook)
+* [Face Verification](#face-verification)
+* [Voice Verification](#voice-verification)
+* [Custom SMS](#custom-sms)
+* [Balance](#balance)
+* [Webhooks (general)](#webhooks-general)
+* [Docs quick links](#docs-quick-links)
+* [Troubleshooting](#troubleshooting)
+* [Security & Best Practices](#security--best-practices)
+* [Useful Links & Contact](#useful-links--contact)
 
 ---
 
@@ -49,8 +65,18 @@ authentica-documentation/
 │     ├─ voice_verify.py
 │     ├─ custom_sms.py
 │     └─ balance.py
-└─ LICENSE
+
 ```
+
+### Docs quick links
+
+- [OTP](docs/otp.md)
+- [Nafath](docs/nafath.md)
+- [Face Verification](docs/face.md)
+- [Voice Verification](docs/voice.md)
+- [Custom SMS](docs/custom-sms.md)
+- [Webhooks](docs/webhooks.md)
+
 
 ### Examples Index (click to read code inline on GitHub)
 
@@ -202,6 +228,8 @@ def verify_otp(recipient: str, otp: str):
     return j
 ```
 
+More: [OTP deep dive](docs/otp.md)
+
 ---
 
 ## Nafath: Initiate & Webhook
@@ -282,6 +310,9 @@ async def nafath_webhook(req: Request):
     return {'ok': True}
 ```
 
+
+**More**: [Nafath docs](docs/nafath.md) • [Webhooks](docs/webhooks.md)
+
 ---
 
 ## Face Verification
@@ -332,6 +363,10 @@ def verify_by_face(ref_b64: str, query_b64: str):
     return j
 ```
 
+
+More: [Face verification docs](docs/face.md)
+
+
 ---
 
 ## Voice Verification
@@ -381,6 +416,8 @@ def verify_by_voice(ref_b64: str, query_b64: str):
     if not r.ok: raise Exception(j)
     return j
 ```
+
+More: [Voice verification docs](docs/voice.md)
 
 ---
 
@@ -435,6 +472,8 @@ def send_custom_sms(phone: str, message: str, sender_name: str):
     if not r.ok: raise Exception(j)
     return j
 ```
+
+More: [Custom SMS docs](docs/custom-sms.md)
 
 ---
 

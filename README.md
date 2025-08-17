@@ -113,9 +113,7 @@ WEBHOOK_PASSWORD=choose-a-strong-secret   # for webhook verification
 
 **Use for**: Login, 2FA, passwordless, recovery.
 
-#### Flow
-
-*Diagram rendering:* This block uses **Mermaid**. On GitHub, it renders as a diagram. If you see plain text, your viewer doesn't support Mermaid—use the ASCII fallback below.
+#### Flow (Mermaid renders on GitHub)
 
 ```mermaid
 sequenceDiagram
@@ -128,19 +126,6 @@ sequenceDiagram
   App->>Auth: POST /api/v2/verify-otp (phone/email + otp)
   Auth-->>App: 200 (verified: true/false)
 ```
-
-<details>
-<summary><strong>ASCII fallback (if Mermaid doesn’t render)</strong></summary>
-
-```
-Your App  --->  Authentica : POST /api/v2/send-otp (sms/whatsapp/email)
-Authentica --->  Your App  : 200 (queued/sent)
-[User receives OTP]
-Your App  --->  Authentica : POST /api/v2/verify-otp (phone/email + otp)
-Authentica --->  Your App  : 200 (verified: true/false)
-```
-
-</details>
 
 ### Node — Send OTP (choose channel)
 
@@ -217,12 +202,6 @@ def verify_otp(recipient: str, otp: str):
     return j
 ```
 
-**Tips**
-
-* For SMS/WhatsApp use `phone`; for Email use `email`.
-* If delivery is inconsistent, try another channel (WhatsApp ↔ SMS).
-* Check E.164 formatting.
-
 ---
 
 ## Nafath: Initiate & Webhook
@@ -230,6 +209,22 @@ def verify_otp(recipient: str, otp: str):
 **Use for**: High‑assurance KYC using Saudi digital identity.
 
 > **Enablement required**: Nafath is not enabled by default and may incur separate charges. Contact Authentica to enable it.
+
+#### Flow (Mermaid renders on GitHub)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant App as Your Server
+  participant Auth as Authentica
+  participant User as Nafath App
+  App->>Auth: POST /api/v2/verify-by-nafath (init)
+  Auth-->>App: 200 {transaction}
+  Auth-->>User: Push approval request
+  User-->>Auth: Approve / Deny
+  Auth-->>App: POST /webhook/nafath {Status, NationalId, Password}
+  App->>App: Verify secret & update user
+```
 
 ### Node — Minimal Nafath server (init + webhook)
 
@@ -287,18 +282,22 @@ async def nafath_webhook(req: Request):
     return {'ok': True}
 ```
 
-**Local testing**
-
-* Expose your webhook with **cloudflared**/**ngrok** and set the public URL in the portal.
-* Always verify the shared secret/password field.
-
-**More**: `docs/nafath.md` • Webhooks: `docs/webhooks.md`
-
 ---
 
 ## Face Verification
 
 **Use for**: Step‑up checks (account recovery, high‑risk actions).
+
+#### Flow (Mermaid renders on GitHub)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant App as Your App
+  participant Auth as Authentica
+  App->>Auth: POST /api/v2/verify-by-face {user_id, registered_face_image?, query_face_image}
+  Auth-->>App: 200 {match, score}
+```
 
 ### Node — Verify by face (base64 images)
 
@@ -333,16 +332,22 @@ def verify_by_face(ref_b64: str, query_b64: str):
     return j
 ```
 
-**Tips**
-
-* Clear, well‑lit images; avoid heavy compression.
-* You can store a reference image once, then omit `registered_face_image` later.
-
 ---
 
 ## Voice Verification
 
 **Use for**: High‑assurance checks, hands‑free flows.
+
+#### Flow (Mermaid renders on GitHub)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant App as Your App
+  participant Auth as Authentica
+  App->>Auth: POST /api/v2/verify-by-voice {user_id, registered_audio?, query_audio}
+  Auth-->>App: 200 {match, score}
+```
 
 ### Node — Verify by voice (base64 audio)
 
@@ -377,16 +382,26 @@ def verify_by_voice(ref_b64: str, query_b64: str):
     return j
 ```
 
-**Tips**
-
-* Use similar sampling/quality for reference & query audio.
-* Do not log base64 audio.
-
 ---
 
 ## Custom SMS
 
 **Use for**: Non‑OTP notifications with a **registered sender name**.
+
+#### Flow (Mermaid renders on GitHub)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant App as Your App
+  participant Auth as Authentica
+  participant Telco as Carrier
+  participant User as Recipient
+  App->>Auth: POST /api/v2/send-sms {phone, message, sender_name}
+  Auth-->>App: 200 {queued: true}
+  Auth->>Telco: Submit SMS
+  Telco->>User: Deliver SMS
+```
 
 ### Node — Send custom SMS
 
@@ -421,24 +436,33 @@ def send_custom_sms(phone: str, message: str, sender_name: str):
     return j
 ```
 
-**Tip**: Ensure your sender name is **registered/approved** in Authentica.
-
 ---
 
 ## Balance
+
+#### Flow (Mermaid renders on GitHub)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant App as Your App
+  participant Auth as Authentica
+  App->>Auth: GET /api/v2/balance
+  Auth-->>App: 200 {balance}
+```
 
 ### Node — Check balance
 
 ```js
 async function checkBalance() {
-  const BASE_URL = process.env.BASE_URL || 'https://api.authentica.sa';
-  const API_KEY  = process.env.AUTHENTICA_API_KEY || 'YOUR_API_KEY';
-  const res = await fetch(`${BASE_URL}/api/v2/balance`, {
-    headers: { 'Accept':'application/json','X-Authorization': API_KEY }
-  });
-  const json = await res.json();
-  if (!res.ok) throw new Error(JSON.stringify(json));
-  return json; // e.g., { data: { balance: 21934 } }
+    const BASE_URL = process.env.BASE_URL || 'https://api.authentica.sa';
+    const API_KEY  = process.env.AUTHENTICA_API_KEY || 'YOUR_API_KEY';
+    const res = await fetch(`${BASE_URL}/api/v2/balance`, {
+        headers: { 'Accept':'application/json','X-Authorization': API_KEY }
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(JSON.stringify(json));
+    return json; // e.g., { data: { balance: 21934 } }
 }
 ```
 
@@ -493,9 +517,3 @@ def check_balance():
 * API Docs: [https://authenticasa.docs.apiary.io/#reference](https://authenticasa.docs.apiary.io/#reference)
 * Portal/Dashboard: [https://portal.authentica.sa/](https://portal.authentica.sa/)
 * Support / Sales: **[support@your-company.com](mailto:support@your-company.com)** *(replace with your real contact)*
-
----
-
-## License
-
-MIT © **Your Company / Org Name**

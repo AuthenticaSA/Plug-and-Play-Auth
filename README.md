@@ -6,6 +6,14 @@
 
 A single page you can **read on GitHub** and immediately understand how to integrate **Authentica**:
 
+> **Free to start**
+> - **Email OTP is free** — send & verify by **email** at no cost.
+> - **100 free credits** on signup for **SMS**, **WhatsApp**, **Face**, and **Voice**.
+> - 👉 **[Create your account »](https://portal.authentica.sa/signUp)**
+
+A single page you can **read on GitHub** and immediately understand how to integrate **Authentica**:
+
+
 * **OTP** via **SMS / WhatsApp / Email**
 * **Biometrics**: **Face** & **Voice** verification
 * **Custom SMS** and **Balance** checks
@@ -94,7 +102,7 @@ authentica-documentation/
 │     ├─ voice_verify.py
 │     ├─ custom_sms.py
 │     └─ balance.py
-└─ LICENSE
+
 ```
 
 ### Docs quick links
@@ -521,7 +529,7 @@ def check_balance():
 * Website: [https://authentica.sa](https://authentica.sa)
 * API Docs: [https://authenticasa.docs.apiary.io/#reference](https://authenticasa.docs.apiary.io/#reference)
 * Portal/Dashboard: [https://portal.authentica.sa/](https://portal.authentica.sa/)
-* Support / Sales: [**support@your-company.com**](mailto:support@your-company.com) *(replace with your real contact)*
+* Support / Sales: [**support@authentica.sa**](mailto:support@authentica.sa)
 
 [↑ Back to top](#top)
 

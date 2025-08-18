@@ -1,13 +1,16 @@
-# Authentica API — Developer Journey & Examples
+<a id="top"></a>
 
-A single page you can **read** and immediately understand how to integrate **Authentica**:
+# Authentica API — OTP, Face & Voice Biometrics, SMS (Node.js & Python Examples)
+
+*Saudi Arabia identity verification APIs — OTP via SMS/WhatsApp/Email, Face & Voice biometrics, and transactional SMS. Built for developers: REST/JSON, minimal examples, and fast integration.*
+
+A single page you can **read on GitHub** and immediately understand how to integrate **Authentica**:
 
 * **OTP** via **SMS / WhatsApp / Email**
-* **Nafath** (Saudi digital identity) — *enablement required*
 * **Biometrics**: **Face** & **Voice** verification
 * **Custom SMS** and **Balance** checks
 
-> This README includes **minimal, commented Node.js & Python snippets**. Full, runnable scripts live in `/examples/`.
+> This README includes **minimal, commented Node.js & Python snippets**. Full, runnable scripts live in `/examples/` (also readable inline on GitHub). Cloning is **optional**.
 
 ---
 
@@ -17,28 +20,24 @@ A single page you can **read** and immediately understand how to integrate **Aut
 
 **What Authentica offers**
 
-* **Multi‑channel OTP**: Send and verify one‑time codes via **SMS**, **WhatsApp**, or **Email**.
-* **Nafath** (Saudi national digital identity): High‑assurance identity verification **(enablement required, separate pricing may apply)**.
-* **Biometrics**: **Face** and **Voice** matching to step‑up trust when needed.
+* **Multi-channel OTP**: Send and verify one-time codes via **SMS**, **WhatsApp**, or **Email**.
+* **Biometrics**: **Face** and **Voice** matching to step-up trust when needed.
 * **Outbound messaging**: **Custom SMS** using approved sender IDs.
-* **Webhooks**: Asynchronous callbacks for status updates (e.g., Nafath results).
-* **Developer‑friendly**: Clean REST endpoints, JSON payloads, and clear error semantics.
+* **Webhooks**: Asynchronous callbacks for status updates.
+* **Developer-friendly**: Clean REST endpoints, JSON payloads, and clear error semantics.
 
 **Common use cases**
 
-* Sign‑up / login (passwordless or 2FA)
-* Risk‑based step‑up for sensitive actions
-* KYC / identity checks for regulated services
-* Account recovery and user re‑verification
+* Sign-up / login (passwordless or 2FA)
+* Risk-based step-up for sensitive actions
+* Account recovery and user re-verification
 * Transactional notifications and alerts (SMS)
 
 **What this repo provides**
 
-* A **docs‑first README** you can read on GitHub to learn flows end‑to‑end.
-* Short **deep‑dive pages** in `/docs/` for OTP, Nafath, Face, Voice, SMS, and Webhooks.
+* A **docs-first README** you can read on GitHub to learn flows end-to-end.
+* Short **deep-dive pages** in `/docs/` for OTP, Face, Voice, SMS, and Webhooks.
 * Tiny, **runnable examples** in `/examples/` for **Node.js** and **Python**—kept minimal so you can copy/paste quickly.
-
-> Need Nafath enabled or have pricing questions? See **Useful Links & Contact** at the end of this page.
 
 [↑ Back to top](#top)
 
@@ -47,21 +46,21 @@ A single page you can **read** and immediately understand how to integrate **Aut
 ## How to use this page
 
 1. Skim **Before you start** (headers, formats, optional env names).
-2. Pick a flow (OTP, Nafath, Face, Voice, SMS, Balance).
+2. Pick a flow (OTP, Face, Voice, SMS, Balance).
 3. Copy a **Node** or **Python** snippet as your starting point.
 4. If you want a runnable script, click the file under **Examples Index**.
 
 ### ⚡ Quick Navigation
 
-* [Examples Index](#examples-index-click-to-read-code-inline-on-github)
+* [About Authentica](#about-authentica)
 * [Before you start](#before-you-start)
 * [OTP — Send & Verify](#otp-send--verify)
-* [Nafath — Initiate & Webhook](#nafath-initiate--webhook)
 * [Face Verification](#face-verification)
 * [Voice Verification](#voice-verification)
 * [Custom SMS](#custom-sms)
 * [Balance](#balance)
 * [Webhooks (general)](#webhooks-general)
+* [Examples Index](#examples-index-click-to-read-code-inline-on-github)
 * [Docs quick links](#docs-quick-links)
 * [Troubleshooting](#troubleshooting)
 * [Security & Best Practices](#security--best-practices)
@@ -76,7 +75,6 @@ authentica-documentation/
 ├─ README.md                     # You are here
 ├─ docs/                         # Short, focused deep dives (optional reading)
 │  ├─ otp.md
-│  ├─ nafath.md
 │  ├─ face.md
 │  ├─ voice.md
 │  ├─ custom-sms.md
@@ -85,7 +83,6 @@ authentica-documentation/
 │  ├─ node/
 │  │  ├─ otp_send.js            # tiny, commented scripts
 │  │  ├─ otp_verify.js
-│  │  ├─ nafath_server.js       # Express init + webhook
 │  │  ├─ face_verify.js
 │  │  ├─ voice_verify.js
 │  │  ├─ custom_sms.js
@@ -93,35 +90,31 @@ authentica-documentation/
 │  └─ python/
 │     ├─ otp_send.py
 │     ├─ otp_verify.py
-│     ├─ nafath_server.py       # FastAPI init + webhook
 │     ├─ face_verify.py
 │     ├─ voice_verify.py
 │     ├─ custom_sms.py
 │     └─ balance.py
-
+└─ LICENSE
 ```
 
 ### Docs quick links
 
-- [OTP](docs/otp.md)
-- [Nafath](docs/nafath.md)
-- [Face Verification](docs/face.md)
-- [Voice Verification](docs/voice.md)
-- [Custom SMS](docs/custom-sms.md)
-- [Webhooks](docs/webhooks.md)
-
+* [OTP](docs/otp.md)
+* [Face Verification](docs/face.md)
+* [Voice Verification](docs/voice.md)
+* [Custom SMS](docs/custom-sms.md)
+* [Webhooks](docs/webhooks.md)
 
 ### Examples Index (click to read code inline on GitHub)
 
-| Feature                 | Node.js file                                                      | Python file                                                           |
-| ----------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------- |
-| OTP — Send              | [examples/node/otp\_send.js](examples/node/otp_send.js)           | [examples/python/otp\_send.py](examples/python/otp_send.py)           |
-| OTP — Verify            | [examples/node/otp\_verify.js](examples/node/otp_verify.js)       | [examples/python/otp\_verify.py](examples/python/otp_verify.py)       |
-| Nafath (init + webhook) | [examples/node/nafath\_server.js](examples/node/nafath_server.js) | [examples/python/nafath\_server.py](examples/python/nafath_server.py) |
-| Face verify             | [examples/node/face\_verify.js](examples/node/face_verify.js)     | [examples/python/face\_verify.py](examples/python/face_verify.py)     |
-| Voice verify            | [examples/node/voice\_verify.js](examples/node/voice_verify.js)   | [examples/python/voice\_verify.py](examples/python/voice_verify.py)   |
-| Custom SMS              | [examples/node/custom\_sms.js](examples/node/custom_sms.js)       | [examples/python/custom\_sms.py](examples/python/custom_sms.py)       |
-| Balance                 | [examples/node/balance.js](examples/node/balance.js)              | [examples/python/balance.py](examples/python/balance.py)              |
+| Feature      | Node.js file                                                    | Python file                                                         |
+| ------------ | --------------------------------------------------------------- | ------------------------------------------------------------------- |
+| OTP — Send   | [examples/node/otp\_send.js](examples/node/otp_send.js)         | [examples/python/otp\_send.py](examples/python/otp_send.py)         |
+| OTP — Verify | [examples/node/otp\_verify.js](examples/node/otp_verify.js)     | [examples/python/otp\_verify.py](examples/python/otp_verify.py)     |
+| Face verify  | [examples/node/face\_verify.js](examples/node/face_verify.js)   | [examples/python/face\_verify.py](examples/python/face_verify.py)   |
+| Voice verify | [examples/node/voice\_verify.js](examples/node/voice_verify.js) | [examples/python/voice\_verify.py](examples/python/voice_verify.py) |
+| Custom SMS   | [examples/node/custom\_sms.js](examples/node/custom_sms.js)     | [examples/python/custom\_sms.py](examples/python/custom_sms.py)     |
+| Balance      | [examples/node/balance.js](examples/node/balance.js)            | [examples/python/balance.py](examples/python/balance.py)            |
 
 > Every example is intentionally short and commented. Use them as runnable references; no boilerplate frameworks beyond `express` (Node) and `fastapi/requests` (Python) where needed.
 
@@ -148,23 +141,25 @@ Accept: application/json
 Content-Type: application/json
 ```
 
+**Runtime requirements**
+
+* Node.js **18+** (global `fetch`) or add a `fetch` polyfill for older versions
+* Python **3.9+**
+
 **Formats & notes**
 
 * Phone numbers: **E.164** (e.g., `+9665XXXXXXXX`).
 * Face/Voice media: **base64** strings (avoid logging in production).
 * Timeouts/retries: treat all calls as network I/O; add retries with jitter in your app if needed.
 
-**Nafath**
-
-> ⚠️ Requires account **enablement** and may have **separate pricing**. Contact Authentica to enable before testing.
-
 **Optional environment variables** (used by examples; not required to understand the README)
 
 ```
 AUTHENTICA_API_KEY=your_api_key
 BASE_URL=https://api.authentica.sa
-WEBHOOK_PASSWORD=choose-a-strong-secret   # for webhook verification
 ```
+
+[↑ Back to top](#top)
 
 ---
 
@@ -261,96 +256,19 @@ def verify_otp(recipient: str, otp: str):
     return j
 ```
 
-More: [OTP deep dive](docs/otp.md)
+**Tips**
 
----
+* For SMS/WhatsApp use `phone`; for Email use `email`.
+* If delivery is inconsistent, try another channel (WhatsApp ↔ SMS).
+* Check E.164 formatting.
 
-## Nafath: Initiate & Webhook
-
-**Use for**: High‑assurance KYC using Saudi digital identity.
-
-> **Enablement required**: Nafath is not enabled by default and may incur separate charges. Contact Authentica to enable it.
-
-#### Flow (Mermaid renders on GitHub)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  participant App as Your Server
-  participant Auth as Authentica
-  participant User as Nafath App
-  App->>Auth: POST /api/v2/verify-by-nafath (init)
-  Auth-->>App: 200 {transaction}
-  Auth-->>User: Push approval request
-  User-->>Auth: Approve / Deny
-  Auth-->>App: POST /webhook/nafath {Status, NationalId, Password}
-  App->>App: Verify secret & update user
-```
-
-### Node — Minimal Nafath server (init + webhook)
-
-```js
-// Express server: initiate Nafath + receive webhook
-import 'dotenv/config';
-import express from 'express';
-const app = express(); app.use(express.json());
-const BASE_URL = process.env.BASE_URL || 'https://api.authentica.sa';
-const API_KEY  = process.env.AUTHENTICA_API_KEY || 'YOUR_API_KEY';
-const SECRET   = process.env.WEBHOOK_PASSWORD || 'your-secure-password';
-
-app.post('/nafath/init', async (req, res) => {
-  const r = await fetch(`${BASE_URL}/api/v2/verify-by-nafath`, {
-    method: 'POST',
-    headers: { 'Accept':'application/json','Content-Type':'application/json','X-Authorization': API_KEY },
-    body: JSON.stringify({ user_id: req.body?.user_id || 'demo-user' })
-  });
-  res.status(r.status).json(await r.json());
-});
-
-app.post('/webhook/nafath', (req, res) => {
-  if (req.body?.Password !== SECRET) return res.sendStatus(401);
-  console.log('Nafath:', req.body?.Status, 'NID:', req.body?.NationalId);
-  res.sendStatus(200);
-});
-
-app.listen(3000, () => console.log('Nafath demo on http://localhost:3000'));
-```
-
-### Python — Minimal Nafath server (FastAPI)
-
-```python
-# FastAPI server: initiate Nafath + receive webhook
-import os, json, requests
-from fastapi import FastAPI, Request, HTTPException
-app = FastAPI()
-BASE_URL = os.getenv('BASE_URL','https://api.authentica.sa')
-API_KEY  = os.getenv('AUTHENTICA_API_KEY','YOUR_API_KEY')
-SECRET   = os.getenv('WEBHOOK_PASSWORD','your-secure-password')
-
-@app.post('/nafath/init')
-def nafath_init(payload: dict):
-    r = requests.post(f"{BASE_URL}/api/v2/verify-by-nafath",
-        headers={'Accept':'application/json','Content-Type':'application/json','X-Authorization':API_KEY},
-        data=json.dumps({'user_id': payload.get('user_id','demo-user')}))
-    return {'status': r.status_code, 'json': r.json()}
-
-@app.post('/webhook/nafath')
-async def nafath_webhook(req: Request):
-    data = await req.json()
-    if data.get('Password') != SECRET:
-        raise HTTPException(status_code=401, detail='Invalid secret')
-    print('Nafath:', data.get('Status'), 'NID:', data.get('NationalId'))
-    return {'ok': True}
-```
-
-
-**More**: [Webhooks](docs/webhooks.md)
+[↑ Back to top](#top)
 
 ---
 
 ## Face Verification
 
-**Use for**: Step‑up checks (account recovery, high‑risk actions).
+**Use for**: Step-up checks (account recovery, high-risk actions).
 
 #### Flow (Mermaid renders on GitHub)
 
@@ -359,8 +277,8 @@ sequenceDiagram
   autonumber
   participant App as Your App
   participant Auth as Authentica
-  App->>Auth: POST /api/v2/verify-by-face {user_id, registered_face_image?, query_face_image}
-  Auth-->>App: 200 {match, score}
+  App->>Auth: POST /api/v2/verify-by-face
+  Auth-->>App: 200 { match, score }
 ```
 
 ### Node — Verify by face (base64 images)
@@ -396,25 +314,28 @@ def verify_by_face(ref_b64: str, query_b64: str):
     return j
 ```
 
+**Tips**
 
-More: [Face verification docs](docs/face.md)
+* Clear, well-lit images; avoid heavy compression.
+* You can store a reference image once, then omit `registered_face_image` later.
 
+[↑ Back to top](#top)
 
 ---
 
 ## Voice Verification
 
-**Use for**: High‑assurance checks, hands‑free flows.
+**Use for**: High-assurance checks, hands-free flows.
 
-#### Flow
+#### Flow (Mermaid renders on GitHub)
 
 ```mermaid
 sequenceDiagram
   autonumber
   participant App as Your App
   participant Auth as Authentica
-  App->>Auth: POST /api/v2/verify-by-voice {user_id, registered_audio?, query_audio}
-  Auth-->>App: 200 {match, score}
+  App->>Auth: POST /api/v2/verify-by-voice
+  Auth-->>App: 200 { match, score }
 ```
 
 ### Node — Verify by voice (base64 audio)
@@ -450,13 +371,18 @@ def verify_by_voice(ref_b64: str, query_b64: str):
     return j
 ```
 
-More: [Voice verification docs](docs/voice.md)
+**Tips**
+
+* Use similar sampling/quality for reference & query audio.
+* Do not log base64 audio.
+
+[↑ Back to top](#top)
 
 ---
 
 ## Custom SMS
 
-**Use for**: Non‑OTP notifications with a **registered sender name**.
+**Use for**: Non-OTP notifications with a **registered sender name**.
 
 #### Flow (Mermaid renders on GitHub)
 
@@ -465,12 +391,9 @@ sequenceDiagram
   autonumber
   participant App as Your App
   participant Auth as Authentica
-  participant Telco as Carrier
-  participant User as Recipient
-  App->>Auth: POST /api/v2/send-sms {phone, message, sender_name}
-  Auth-->>App: 200 {queued: true}
-  Auth->>Telco: Submit SMS
-  Telco->>User: Deliver SMS
+  App->>Auth: POST /api/v2/send-sms
+  Auth-->>App: 200 (queued)
+  Note over App,Auth: Carrier delivers SMS to user
 ```
 
 ### Node — Send custom SMS
@@ -506,7 +429,9 @@ def send_custom_sms(phone: str, message: str, sender_name: str):
     return j
 ```
 
-More: [Custom SMS docs](docs/custom-sms.md)
+**Tip**: Ensure your sender name is **registered/approved** in Authentica.
+
+[↑ Back to top](#top)
 
 ---
 
@@ -520,7 +445,7 @@ sequenceDiagram
   participant App as Your App
   participant Auth as Authentica
   App->>Auth: GET /api/v2/balance
-  Auth-->>App: 200 {balance}
+  Auth-->>App: 200 { balance }
 ```
 
 ### Node — Check balance
@@ -530,7 +455,7 @@ async function checkBalance() {
     const BASE_URL = process.env.BASE_URL || 'https://api.authentica.sa';
     const API_KEY  = process.env.AUTHENTICA_API_KEY || 'YOUR_API_KEY';
     const res = await fetch(`${BASE_URL}/api/v2/balance`, {
-        headers: { 'Accept':'application/json','X-Authorization': API_KEY }
+        headers: { 'Accept': 'application/json','X-Authorization': API_KEY }
     });
     const json = await res.json();
     if (!res.ok) throw new Error(JSON.stringify(json));
@@ -553,14 +478,18 @@ def check_balance():
     return j
 ```
 
+[↑ Back to top](#top)
+
 ---
 
 ## Webhooks (general)
 
-* Expose a **POST** endpoint (e.g., `/webhook/nafath`).
+* Expose a **POST** endpoint (e.g., `/webhook/events`).
 * **Verify** a shared secret/password from the payload; reject if missing/invalid.
 * For local testing, use **cloudflared** or **ngrok** to create a public URL.
 * Consider **replay protection** (timestamps/nonces) and **IP allowlists**.
+
+[↑ Back to top](#top)
 
 ---
 
@@ -572,6 +501,8 @@ def check_balance():
 * Enforce **E.164** phone formatting.
 * Map common error codes (400 invalid params, 401 bad key, 429 rate limits) to actionable messages.
 
+[↑ Back to top](#top)
+
 ---
 
 ## Troubleshooting
@@ -581,6 +512,8 @@ def check_balance():
 * **Face/Voice mismatch** → Improve sample quality; ensure correct base64 and consistent formats.
 * **No webhook** → Verify public URL, firewall, and secret/password validation.
 
+[↑ Back to top](#top)
+
 ---
 
 ## Useful Links & Contact
@@ -588,4 +521,14 @@ def check_balance():
 * Website: [https://authentica.sa](https://authentica.sa)
 * API Docs: [https://authenticasa.docs.apiary.io/#reference](https://authenticasa.docs.apiary.io/#reference)
 * Portal/Dashboard: [https://portal.authentica.sa/](https://portal.authentica.sa/)
-* Support / Sales: **[support@your-company.com](mailto:support@your-company.com)** *(replace with your real contact)*
+* Support / Sales: [**support@your-company.com**](mailto:support@your-company.com) *(replace with your real contact)*
+
+[↑ Back to top](#top)
+
+---
+
+## License
+
+MIT © **Your Company / Org Name**
+
+<!-- SEO: Authentica, Saudi Arabia, KSA, OTP, SMS, WhatsApp, Email, Face Recognition, Voice Biometrics, identity verification, REST API, JSON, Node.js, Python, examples -->

@@ -11,6 +11,39 @@ A single page you can **read** and immediately understand how to integrate **Aut
 
 ---
 
+## About Authentica
+
+**Authentica** is a Saudi identity & communications platform that provides simple JSON APIs for **secure user verification** and **trusted messaging**. Teams use it to verify users, fight fraud, and streamline onboarding—especially for products serving users in the Kingdom of Saudi Arabia.
+
+**What Authentica offers**
+
+* **Multi‑channel OTP**: Send and verify one‑time codes via **SMS**, **WhatsApp**, or **Email**.
+* **Nafath** (Saudi national digital identity): High‑assurance identity verification **(enablement required, separate pricing may apply)**.
+* **Biometrics**: **Face** and **Voice** matching to step‑up trust when needed.
+* **Outbound messaging**: **Custom SMS** using approved sender IDs.
+* **Webhooks**: Asynchronous callbacks for status updates (e.g., Nafath results).
+* **Developer‑friendly**: Clean REST endpoints, JSON payloads, and clear error semantics.
+
+**Common use cases**
+
+* Sign‑up / login (passwordless or 2FA)
+* Risk‑based step‑up for sensitive actions
+* KYC / identity checks for regulated services
+* Account recovery and user re‑verification
+* Transactional notifications and alerts (SMS)
+
+**What this repo provides**
+
+* A **docs‑first README** you can read on GitHub to learn flows end‑to‑end.
+* Short **deep‑dive pages** in `/docs/` for OTP, Nafath, Face, Voice, SMS, and Webhooks.
+* Tiny, **runnable examples** in `/examples/` for **Node.js** and **Python**—kept minimal so you can copy/paste quickly.
+
+> Need Nafath enabled or have pricing questions? See **Useful Links & Contact** at the end of this page.
+
+[↑ Back to top](#top)
+
+---
+
 ## How to use this page
 
 1. Skim **Before you start** (headers, formats, optional env names).
@@ -311,7 +344,7 @@ async def nafath_webhook(req: Request):
 ```
 
 
-**More**: [Nafath docs](docs/nafath.md) • [Webhooks](docs/webhooks.md)
+**More**: [Webhooks](docs/webhooks.md)
 
 ---
 
@@ -373,7 +406,7 @@ More: [Face verification docs](docs/face.md)
 
 **Use for**: High‑assurance checks, hands‑free flows.
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram

@@ -535,8 +535,5 @@ def check_balance():
 
 ---
 
-## License
-
-MIT © **Your Company / Org Name**
 
 <!-- SEO: Authentica, Saudi Arabia, KSA, OTP, SMS, WhatsApp, Email, Face Recognition, Voice Biometrics, identity verification, REST API, JSON, Node.js, Python, examples -->

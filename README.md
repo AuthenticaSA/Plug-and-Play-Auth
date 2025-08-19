@@ -513,7 +513,7 @@ def check_balance():
 * Website: [https://authentica.sa](https://authentica.sa)
 * API Docs: [https://authenticasa.docs.apiary.io/#reference](https://authenticasa.docs.apiary.io/#reference)
 * Portal/Dashboard: [https://portal.authentica.sa/](https://portal.authentica.sa/)
-* Support / Sales: [**support@authentica.sa**](mailto:support@authentica.sa)
+* Support: [**support@authentica.sa**](mailto:support@authentica.sa)
 
 [↑ Back to top](#top)
 
@@ -521,6 +521,3 @@ def check_balance():
 
 
 <!-- SEO: Authentica, Saudi Arabia, KSA, OTP, SMS, WhatsApp, Email, Face Recognition, 2FA, two-factor authentication, Voice Biometrics, identity verification, REST API, JSON, Authentication, Integration, auth examples -->
-
-two factor 
-integeration 

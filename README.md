@@ -31,7 +31,6 @@ A single page you can **read on GitHub** and immediately understand how to integ
 * **Multi-channel OTP**: Send and verify one-time codes via **SMS**, **WhatsApp**, or **Email**.
 * **Biometrics**: **Face** and **Voice** matching to step-up trust when needed.
 * **Outbound messaging**: **Custom SMS** using approved sender IDs.
-* **Webhooks**: Asynchronous callbacks for status updates.
 * **Developer-friendly**: Clean REST endpoints, JSON payloads, and clear error semantics.
 
 **Common use cases**
@@ -44,7 +43,7 @@ A single page you can **read on GitHub** and immediately understand how to integ
 **What this repo provides**
 
 * A **docs-first README** you can read on GitHub to learn flows end-to-end.
-* Short **deep-dive pages** in `/docs/` for OTP, Face, Voice, SMS, and Webhooks.
+* Short **deep-dive pages** in `/docs/` for OTP, Face, Voice, and SMS.
 * Tiny, **runnable examples** in `/examples/` for **Node.js** and **Python**—kept minimal so you can copy/paste quickly.
 
 [↑ Back to top](#top)
@@ -67,7 +66,6 @@ A single page you can **read on GitHub** and immediately understand how to integ
 * [Voice Verification](#voice-verification)
 * [Custom SMS](#custom-sms)
 * [Balance](#balance)
-* [Webhooks (general)](#webhooks-general)
 * [Examples Index](#examples-index-click-to-read-code-inline-on-github)
 * [Docs quick links](#docs-quick-links)
 * [Troubleshooting](#troubleshooting)
@@ -85,23 +83,23 @@ authentica-documentation/
 │  ├─ otp.md
 │  ├─ face.md
 │  ├─ voice.md
-│  ├─ custom-sms.md
-│  └─ webhooks.md
-├─ examples/
-│  ├─ node/
-│  │  ├─ otp_send.js            # tiny, commented scripts
-│  │  ├─ otp_verify.js
-│  │  ├─ face_verify.js
-│  │  ├─ voice_verify.js
-│  │  ├─ custom_sms.js
-│  │  └─ balance.js
-│  └─ python/
-│     ├─ otp_send.py
-│     ├─ otp_verify.py
-│     ├─ face_verify.py
-│     ├─ voice_verify.py
-│     ├─ custom_sms.py
-│     └─ balance.py
+│  └─ custom-sms.md
+│ 
+└─ examples/
+   ├─ node/
+   │  ├─ otp_send.js            # tiny, commented scripts
+   │  ├─ otp_verify.js
+   │  ├─ face_verify.js
+   │  ├─ voice_verify.js
+   │  ├─ custom_sms.js
+   │  └─ balance.js
+   └─ python/
+      ├─ otp_send.py
+      ├─ otp_verify.py
+      ├─ face_verify.py
+      ├─ voice_verify.py
+      ├─ custom_sms.py
+      └─ balance.py
 
 ```
 
@@ -111,7 +109,6 @@ authentica-documentation/
 * [Face Verification](docs/face.md)
 * [Voice Verification](docs/voice.md)
 * [Custom SMS](docs/custom-sms.md)
-* [Webhooks](docs/webhooks.md)
 
 ### Examples Index (click to read code inline on GitHub)
 
@@ -175,7 +172,7 @@ BASE_URL=https://api.authentica.sa
 
 **Use for**: Login, 2FA, passwordless, recovery.
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram
@@ -278,7 +275,7 @@ def verify_otp(recipient: str, otp: str):
 
 **Use for**: Step-up checks (account recovery, high-risk actions).
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram
@@ -335,7 +332,7 @@ def verify_by_face(ref_b64: str, query_b64: str):
 
 **Use for**: High-assurance checks, hands-free flows.
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram
@@ -392,7 +389,7 @@ def verify_by_voice(ref_b64: str, query_b64: str):
 
 **Use for**: Non-OTP notifications with a **registered sender name**.
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram
@@ -445,7 +442,7 @@ def send_custom_sms(phone: str, message: str, sender_name: str):
 
 ## Balance
 
-#### Flow (Mermaid renders on GitHub)
+#### Flow
 
 ```mermaid
 sequenceDiagram
@@ -490,22 +487,10 @@ def check_balance():
 
 ---
 
-## Webhooks (general)
-
-* Expose a **POST** endpoint (e.g., `/webhook/events`).
-* **Verify** a shared secret/password from the payload; reject if missing/invalid.
-* For local testing, use **cloudflared** or **ngrok** to create a public URL.
-* Consider **replay protection** (timestamps/nonces) and **IP allowlists**.
-
-[↑ Back to top](#top)
-
----
-
 ## Security & Best Practices
 
 * Never log **PII** (full phone/email) or **base64 media**.
 * Store reference **face/voice** media **encrypted at rest**; obtain explicit user consent.
-* Validate **webhooks** and handle failures idempotently.
 * Enforce **E.164** phone formatting.
 * Map common error codes (400 invalid params, 401 bad key, 429 rate limits) to actionable messages.
 
@@ -518,7 +503,6 @@ def check_balance():
 * **401 Unauthorized** → Check `X-Authorization` and account status in the portal.
 * **OTP not delivered** → Confirm E.164, correct channel, registered sender (SMS), and carrier coverage.
 * **Face/Voice mismatch** → Improve sample quality; ensure correct base64 and consistent formats.
-* **No webhook** → Verify public URL, firewall, and secret/password validation.
 
 [↑ Back to top](#top)
 
@@ -536,4 +520,7 @@ def check_balance():
 ---
 
 
-<!-- SEO: Authentica, Saudi Arabia, KSA, OTP, SMS, WhatsApp, Email, Face Recognition, Voice Biometrics, identity verification, REST API, JSON, Node.js, Python, examples -->
+<!-- SEO: Authentica, Saudi Arabia, KSA, OTP, SMS, WhatsApp, Email, Face Recognition, 2FA, two-factor authentication, Voice Biometrics, identity verification, REST API, JSON, Authentication, Integration, auth examples -->
+
+two factor 
+integeration 

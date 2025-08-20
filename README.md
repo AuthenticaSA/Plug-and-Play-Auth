@@ -24,7 +24,7 @@ A single page you can **read on GitHub** and immediately understand how to integ
 
 ## About Authentica
 
-**Authentica** is a Saudi identity & communications platform that provides simple JSON APIs for **secure user verification** and **trusted messaging**. Teams use it to verify users, fight fraud, and streamline onboarding—especially for products serving users in the Kingdom of Saudi Arabia.
+**Authentica** is a Saudi identity verification platform that provides **simple, secure JSON APIs** for OTP, biometrics, and voice-based authentication. Teams use Authentica to **verify users, prevent fraud, and streamline onboarding** with fast, developer-friendly integration.
 
 **What Authentica offers**
 

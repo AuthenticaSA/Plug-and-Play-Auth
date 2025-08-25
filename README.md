@@ -4,7 +4,6 @@
 
 *Saudi Arabia identity verification APIs — OTP via SMS/WhatsApp/Email, Face & Voice biometrics, and transactional SMS. Built for developers: REST/JSON, minimal examples, and fast integration.*
 
-A single page you can **read on GitHub** and immediately understand how to integrate **Authentica**:
 
 > **Free to start**
 > - **Email OTP is free** — send & verify by **email** at no cost.
